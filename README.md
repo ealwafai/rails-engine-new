@@ -1,24 +1,62 @@
-# README
+# Rails Engine
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Table of Contents
 
-Things you may want to cover:
+- [About this Project](#about-this-project)
+- [Learning Goals](#learning-goals)
+- [Local Setup](#local-setup)
+- [Versions](#versions)
+- [Database Schema](#database-schema)
+- [Tools Used](#tools-used)
+- [Contributors](#contributors)
 
-* Ruby version
+### About this Project
 
-* System dependencies
+Rails Engine is an application in which users can.
 
-* Configuration
+This is the base repo for the [Rails Engine project](https://backend.turing.edu/module3/projects/rails_engine/) used for Turing's Backend Module 3.
 
-* Database creation
+## Learning Goals
 
-* Database initialization
 
-* How to run the test suite
+## Local Setup
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+## Versions
 
-* ...
+- Ruby 2.7.2
+
+- Rails 5.2.5
+
+
+## Database Schema
+
+
+## API
+
+ 
+## Tools Used
+
+| Development | Testing       | Gems          |
+|   :----:    |    :----:     |    :----:     |
+| Ruby 2.7.2  | RSpec         | SimpleCov     |
+| Rails       | Rubocop       | Pry           |
+| HTML5       |               | Bootstrap     |
+| CSS3        |               | ShouldaMatcher|
+| Github      |               | VCR           |
+| Atom        |               | Figaro        |
+| Postman     |               | PostgresQL    |
+| Travis      |               | Postico       |
+|             |               | Faker         |
+|             |               | Factorybot    |
+|             |               | Faraday       |
+|             |               | Bcrypt        |
+|             |               |               |
+|             |               |               |
+
+
+## Contributors
+
+👤  **Ezzedine Alwafai**
+- [GitHub](https://github.com/ealwafai)
+- [LinkedIn](https://www.linkedin.com/in/ezzedine-alwafai/)

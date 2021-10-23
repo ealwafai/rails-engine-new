@@ -10,8 +10,10 @@ RSpec.describe 'Merchants API Requests' do
 
         merchants = JSON.parse(response.body, symbolize_names: true)
 
-        expect(response).to be_successful
+        expect(response).to have_http_status(200)
         expect(merchants[:data].count).to eq(20)
+        expect(merchants[:data]).to be_a(Array)
+
 
         merchants[:data].each do |merchant|
           expect(merchant).to have_key(:id)
@@ -35,7 +37,7 @@ RSpec.describe 'Merchants API Requests' do
 
         merchants = JSON.parse(response.body, symbolize_names: true)
 
-        expect(response).to be_successful
+        expect(response).to have_http_status(200)
         expect(merchants[:data]).to eq([])
       end
     end
@@ -51,8 +53,10 @@ RSpec.describe 'Merchants API Requests' do
 
           merchants = JSON.parse(response.body, symbolize_names: true)
 
-          expect(response).to be_successful
+          expect(response).to have_http_status(200)
           expect(merchants[:data].count).to eq(10)
+          expect(merchants[:data]).to be_a(Array)
+
           expect(merchants[:data].first[:id]).to eq(all_merchants[10].id.to_s)
           expect(merchants[:data].last[:id]).to eq(all_merchants[19].id.to_s)
 
@@ -82,8 +86,10 @@ RSpec.describe 'Merchants API Requests' do
 
           merchants = JSON.parse(response.body, symbolize_names: true)
 
-          expect(response).to be_successful
+          expect(response).to have_http_status(200)
           expect(merchants[:data].count).to eq(10)
+          expect(merchants[:data]).to be_a(Array)
+
           expect(merchants[:data].first[:id]).to eq(all_merchants[0].id.to_s)
           expect(merchants[:data].last[:id]).to eq(all_merchants[9].id.to_s)
 
@@ -113,8 +119,10 @@ RSpec.describe 'Merchants API Requests' do
 
           merchants = JSON.parse(response.body, symbolize_names: true)
 
-          expect(response).to be_successful
+          expect(response).to have_http_status(200)
           expect(merchants[:data].count).to eq(10)
+          expect(merchants[:data]).to be_a(Array)
+
           expect(merchants[:data].first[:id]).to eq(all_merchants[20].id.to_s)
           expect(merchants[:data].last[:id]).to eq(all_merchants[29].id.to_s)
 
@@ -143,6 +151,8 @@ RSpec.describe 'Merchants API Requests' do
           merchants = JSON.parse(response.body, symbolize_names: true)
 
           expect(merchants[:data].count).to eq(20)
+          expect(merchants[:data]).to be_a(Array)
+
           expect(merchants[:data].first[:id]).to eq(all_merchants.first.id.to_s)
           expect(merchants[:data].last[:id]).to eq(all_merchants[19].id.to_s)
 

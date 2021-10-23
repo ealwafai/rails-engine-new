@@ -29,9 +29,16 @@ RSpec.describe 'Merchants API Requests' do
       end
     end
 
-    # context 'when no data is available' do
-    #
-    # end
+    context 'when no data is available' do
+      it 'returns an empty array' do
+        get '/api/v1/merchants'
+
+        merchants = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+        expect(merchants[:data]).to eq([])
+      end
+    end
     #
     # context 'when params are present' do
     #

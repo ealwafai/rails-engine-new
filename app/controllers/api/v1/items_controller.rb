@@ -15,7 +15,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    json_response(ItemSerializer.new(item))
+    json_response(ItemSerializer.new(@item))
   end
 
   def create

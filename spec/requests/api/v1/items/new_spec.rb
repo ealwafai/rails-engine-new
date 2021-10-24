@@ -10,7 +10,6 @@ RSpec.describe 'Items API Requests' do
         unit_price: 110.50,
         merchant_id: merchant.id
       }
-
       headers = {"CONTENT_TYPE" => "application/json"}
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
@@ -24,7 +23,7 @@ RSpec.describe 'Items API Requests' do
 
       item = JSON.parse(response.body, symbolize_names: true)
 
-      expect(item[:data]).to be_a Hash
+      expect(item[:data]).to be_a(Hash)
 
       data = item[:data]
       expect(data[:id]).to eq(created_item.id.to_s)

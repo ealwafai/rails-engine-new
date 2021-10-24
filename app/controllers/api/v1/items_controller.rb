@@ -1,4 +1,6 @@
 class Api::V1::ItemsController < ApplicationController
+  before_action :find_item, only: [:show, :update]
+
   def index
     items = if params[:page] && params[:per_page]
                   Item.paginate(page: params[:page], per_page: params[:per_page])
@@ -13,7 +15,6 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def show
-    item = Item.find(params[:id])
     json_response(ItemSerializer.new(item))
   end
 
@@ -22,9 +23,18 @@ class Api::V1::ItemsController < ApplicationController
     json_response(ItemSerializer.new(item), :created)
   end
 
+  def update
+    @item.update!(item_params)
+    json_response(ItemSerializer.new(@item), :accepted)
+  end
+
   private
 
   def item_params
     params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 end

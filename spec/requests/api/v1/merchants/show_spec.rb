@@ -30,7 +30,7 @@ RSpec.describe 'Merchants API Requests' do
 
     context 'merchant does NOT exist' do
       it 'sends a status code 404' do
-        get "/api/v1/merchants/123456"
+        get '/api/v1/merchants/123456'
 
         expect(response).to have_http_status(404)
         expect(response.body).to match(/Couldn't find Merchant/)
@@ -39,7 +39,7 @@ RSpec.describe 'Merchants API Requests' do
 
     context 'invalid request' do
       it 'sends a status code 404' do
-        get "/api/v1/merchants/invalid"
+        get '/api/v1/merchants/invalid'
 
         expect(response).to have_http_status(404)
         expect(response.body).to match(/Couldn't find Merchant/)

@@ -14,7 +14,6 @@ RSpec.describe 'Merchants API Requests' do
         expect(merchants[:data].count).to eq(20)
         expect(merchants[:data]).to be_a(Array)
 
-
         merchants[:data].each do |merchant|
           expect(merchant).to have_key(:id)
           expect(merchant[:id]).to be_an(String)

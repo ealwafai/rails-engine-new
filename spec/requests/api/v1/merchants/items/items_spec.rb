@@ -5,7 +5,7 @@ RSpec.describe 'merchant items requests' do
     context 'merchant exists and has items' do
       it 'returns a list of all merchant items' do
         merchant = create(:merchant)
-        item = create_list(:item, 25, merchant: merchant)
+        all_items = create_list(:item, 25, merchant: merchant)
 
         get "/api/v1/merchants/#{merchant.id}/items"
 

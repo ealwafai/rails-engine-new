@@ -9,6 +9,11 @@ class Api::V1::MerchantsController < ApplicationController
                 else
                   Merchant.paginate(page: 1, per_page: 20)
                 end
-    render json: MerchantSerializer.new(merchants)
+    json_response(MerchantSerializer.new(merchants))
+  end
+
+  def show
+    merchant = Merchant.find(params[:id])
+    json_response(MerchantSerializer.new(merchant))
   end
 end

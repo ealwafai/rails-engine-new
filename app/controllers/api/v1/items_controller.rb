@@ -1,5 +1,5 @@
 class Api::V1::ItemsController < ApplicationController
-  before_action :find_item, only: [:show, :update]
+  before_action :find_item, only: [:show, :update, :destroy]
 
   def index
     items = if params[:page] && params[:per_page]
@@ -26,6 +26,11 @@ class Api::V1::ItemsController < ApplicationController
   def update
     @item.update!(item_params)
     json_response(ItemSerializer.new(@item), :accepted)
+  end
+
+  def destroy
+    @item.destroy
+    head :no_content
   end
 
   private

@@ -13,7 +13,7 @@ RSpec.describe 'Items API Requests' do
             unit_price: 110.50,
             merchant_id: merchant.id
           }
-          headers = {"CONTENT_TYPE" => "application/json"}
+          headers = { 'CONTENT_TYPE' => 'application/json' }
 
           patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -54,9 +54,9 @@ RSpec.describe 'Items API Requests' do
           merchant = create(:merchant)
           item = create(:item, merchant: merchant)
           item_params = {
-            name: 'New Item Name',
+            name: 'New Item Name'
           }
-          headers = {"CONTENT_TYPE" => "application/json"}
+          headers = { 'CONTENT_TYPE' => 'application/json' }
 
           patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -79,9 +79,9 @@ RSpec.describe 'Items API Requests' do
             name: 'New Item Name',
             description: 'New Item Description',
             unit_price: 110.50,
-            merchant_id: 123456
+            merchant_id: 123_456
           }
-          headers = {"CONTENT_TYPE" => "application/json"}
+          headers = { 'CONTENT_TYPE' => 'application/json' }
 
           patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -100,7 +100,7 @@ RSpec.describe 'Items API Requests' do
             unit_price: 'unit price',
             merchant_id: merchant.id
           }
-          headers = {"CONTENT_TYPE" => "application/json"}
+          headers = { 'CONTENT_TYPE' => 'application/json' }
 
           patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -119,7 +119,7 @@ RSpec.describe 'Items API Requests' do
             unit_price: 110.50,
             new_param: 'new param'
           }
-          headers = {"CONTENT_TYPE" => "application/json"}
+          headers = { 'CONTENT_TYPE' => 'application/json' }
 
           patch "/api/v1/items/#{item.id}", headers: headers, params: JSON.generate(item: item_params)
 
@@ -160,9 +160,9 @@ RSpec.describe 'Items API Requests' do
           unit_price: 110.50,
           merchant_id: merchant.id
         }
-        headers = {"CONTENT_TYPE" => "application/json"}
+        headers = { 'CONTENT_TYPE' => 'application/json' }
 
-        patch "/api/v1/items/string", headers: headers, params: JSON.generate(item: item_params)
+        patch '/api/v1/items/string', headers: headers, params: JSON.generate(item: item_params)
 
         expect(response).to have_http_status(404)
         expect(response.body).to match(/Couldn't find Item/)

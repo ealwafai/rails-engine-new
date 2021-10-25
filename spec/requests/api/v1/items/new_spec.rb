@@ -10,7 +10,7 @@ RSpec.describe 'Items API Requests' do
         unit_price: 110.50,
         merchant_id: merchant.id
       }
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = { 'CONTENT_TYPE' => 'application/json' }
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 
@@ -53,7 +53,7 @@ RSpec.describe 'Items API Requests' do
         unit_price: 'price',
         merchant_id: merchant.id
       }
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = { 'CONTENT_TYPE' => 'application/json' }
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 
@@ -68,7 +68,7 @@ RSpec.describe 'Items API Requests' do
         unit_price: '110.50',
         merchant_id: 1
       }
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = { 'CONTENT_TYPE' => 'application/json' }
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 
@@ -85,7 +85,7 @@ RSpec.describe 'Items API Requests' do
         description: 'Item Description',
         merchant_id: merchant.id
       }
-      headers = {"CONTENT_TYPE" => "application/json"}
+      headers = { 'CONTENT_TYPE' => 'application/json' }
 
       post '/api/v1/items', headers: headers, params: JSON.generate(item: item_params)
 

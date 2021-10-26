@@ -33,6 +33,7 @@ class Api::V1::ItemsController < ApplicationController
     @item.destroy
     head :no_content
   end
+
   private
 
   def item_params

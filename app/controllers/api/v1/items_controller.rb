@@ -24,6 +24,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def update
+    Merchant.find(params[:merchant_id]) if params[:merchant_id]
     @item.update!(item_params)
     json_response(ItemSerializer.new(@item), :accepted)
   end
@@ -32,7 +33,6 @@ class Api::V1::ItemsController < ApplicationController
     @item.destroy
     head :no_content
   end
-
   private
 
   def item_params

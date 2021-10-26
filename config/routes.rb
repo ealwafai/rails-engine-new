@@ -8,6 +8,10 @@ Rails.application.routes.draw do
 
       resources :merchants, only: [:index, :show]
       resources :items
+
+      namespace :revenue do
+        resources :merchants, only: :show
+      end
     end
   end
 end

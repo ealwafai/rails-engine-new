@@ -1,9 +1,22 @@
 class Api::V1::Items::SearchController < ApplicationController
   def find_all
-    items = Item.find_by_name(params[:name])
+    @items = search_items(params)
+    return json_response('', :bad_request) unless valid_search?(params)
 
-    return json_response({ error: 'Bad request' }, :bad_request) unless params[:name].present?
+    json_response(ItemSerializer.new(@items))
+  end
 
-    json_response(ItemSerializer.new(items))
+  private
+
+  def search_items(params)
+    if params[:name]
+      @items = Item.find_by_name(params[:name])
+    elsif params[:min_price] || params[:max_price]
+      @items = Item.find_by_price({ min_price: params[:min_price], max_price: params[:max_price] })
+    end
+  end
+
+  def valid_search?(params)
+    params[:name].present? ^ (params[:min_price] || params[:max_price])
   end
 end

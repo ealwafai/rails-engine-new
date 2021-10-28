@@ -1,10 +1,19 @@
 class Api::V1::Merchants::ItemsController < ApplicationController
   def index
-    merchant = Merchant.find(params[:id])
-    items = merchant.items
+    if merchant_id_a_string
+      return json_response({ error: "Couldn't find Merchant" }, :not_found)
+    else
+      merchant = Merchant.find(params[:id])
+      items = merchant.items
+      json_response(ItemSerializer.new(items))
+    end
 
-    return json_response({ error: 'Not found' }, :not_found) if merchant.nil?
 
-    json_response(ItemSerializer.new(items))
+  end
+
+  private
+
+  def merchant_id_a_string
+    params[:id].to_i.zero?
   end
 end

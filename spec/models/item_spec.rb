@@ -39,6 +39,53 @@ RSpec.describe Item do
       end
     end
 
+    describe '.find_by_price' do
+      context 'both params are present' do
+        it 'returns a list of matching items by price' do
+          item_1 = create(:item, unit_price: 150.00, merchant: @merchant_1)
+          item_2 = create(:item, unit_price: 120.00, merchant: @merchant_1)
+          item_3 = create(:item, unit_price: 80.00, merchant: @merchant_2)
+          item_4 = create(:item, unit_price: 50.00, merchant: @merchant_2)
+
+          price_params = { min_price: 65, max_price: 155 }
+
+          expect(Item.find_by_price(price_params)).to be_an(Array)
+          expect(Item.find_by_price(price_params).length).to eq(3)
+          expect(Item.find_by_price(price_params)).not_to include(item_4)
+        end
+      end
+
+      context 'min_price is given' do
+        it 'returns a list of items with higher prices than given param' do
+          item_1 = create(:item, unit_price: 150.00, merchant: @merchant_1)
+          item_2 = create(:item, unit_price: 120.00, merchant: @merchant_1)
+          item_3 = create(:item, unit_price: 80.00, merchant: @merchant_2)
+          item_4 = create(:item, unit_price: 50.00, merchant: @merchant_2)
+
+          price_params = { min_price: 70, max_price: nil }
+
+          expect(Item.find_by_price(price_params)).to be_an(Array)
+          expect(Item.find_by_price(price_params).length).to eq(3)
+          expect(Item.find_by_price(price_params)).not_to include(item_4)
+        end
+      end
+
+      context 'only max_price is given' do
+        it 'returns a list of lower prices than given param' do
+          item_1 = create(:item, unit_price: 150.00, merchant: @merchant_1)
+          item_2 = create(:item, unit_price: 120.00, merchant: @merchant_1)
+          item_3 = create(:item, unit_price: 80.00, merchant: @merchant_2)
+          item_4 = create(:item, unit_price: 170.00, merchant: @merchant_2)
+
+          price_params = { min_price: nil, max_price: 155 }
+
+          expect(Item.find_by_price(price_params)).to be_an(Array)
+          expect(Item.find_by_price(price_params).length).to eq(3)
+          expect(Item.find_by_price(price_params)).not_to include(item_4)
+        end
+      end
+    end
+
     describe '.order_by_revenue' do
       it 'returns a list of items by revenue descending' do
         merchant = create(:merchant, id: 1)

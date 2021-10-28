@@ -20,4 +20,14 @@ class Item < ApplicationRecord
       .order('revenue desc')
       .limit(count)
   end
+
+  def self.find_by_price(price)
+    if price[:min_price] && price[:max_price]
+      where('unit_price > ?', price[:min_price]).where('unit_price < ?', price[:max_price]).to_a
+    elsif price[:max_price]
+      where('unit_price < ?', price[:max_price]).to_a
+    elsif price[:min_price]
+      where('unit_price > ?', price[:min_price]).to_a
+    end
+  end
 end
